@@ -11,12 +11,11 @@ It extracts text from the file, processes it, and returns:
 ---
 
 ## 🚀 Features
-
-* Supports PDF, JPG, PNG (up to 50MB)
-* Extracts text from PDFs and images
-* Uses OCR for scanned documents
-* Returns structured JSON output
-* Simple and clean user interface
+* Supports PDF, JPG, PNG (Max 50MB)
+* High-accuracy OCR for images and scanned documents
+* Direct text extraction from PDF layers
+* AI-driven structured JSON insights (Summary, Entities, Sentiment)
+* Clean, responsive user interface
 
 ---
 

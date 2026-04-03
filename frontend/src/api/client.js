@@ -1,14 +1,10 @@
 import axios from "axios";
 
 // Connect to the backend
-const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000";
-const authSecret = import.meta.env.VITE_AUTH_SECRET;
-
-// Axios with Auth pre-configured
 const api = axios.create({
-  baseURL: backendUrl,
+  baseURL: import.meta.env.VITE_BACKEND_URL || "",
   headers: {
-    "Authorization": `Bearer ${authSecret}`
+    "Authorization": `Bearer ${import.meta.env.VITE_AUTH_SECRET || ""}`
   },
 });
 
