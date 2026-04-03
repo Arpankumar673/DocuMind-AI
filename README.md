@@ -11,20 +11,11 @@ It extracts text from the file, processes it, and returns:
 ---
 
 ## 🚀 Features
-<<<<<<< HEAD
-- **File Support**: PDF, JPG, PNG (Max 50MB).
-- **OCR Extraction**: Powered by Tesseract.js for high-accuracy image text extraction.
-- **PDF Parsing**: Direct text extraction from PDF layers.
-- **AI Analysis**: Deep integration with **OpenRouter API** (GPT-3.5) for structured JSON output.
-- **Premium UI**: Modern React interface with Framer Motion animations and glassmorphism.
-=======
-
-* Supports PDF, JPG, PNG (up to 50MB)
-* Extracts text from PDFs and images
-* Uses OCR for scanned documents
-* Returns structured JSON output
-* Simple and clean user interface
->>>>>>> cd0a4b6 (final hackathon ready version)
+* Supports PDF, JPG, PNG (Max 50MB)
+* High-accuracy OCR for images and scanned documents
+* Direct text extraction from PDF layers
+* AI-driven structured JSON insights (Summary, Entities, Sentiment)
+* Clean, responsive user interface
 
 ---
 
