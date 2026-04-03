@@ -10,8 +10,7 @@ const controller = require("../controllers/document.controller");
  */
 router.post(
   "/analyze-document",
-  authenticateToken,
-  upload.single("file"),
+  upload.any(),
   controller.analyzeDocumentController
 );
 

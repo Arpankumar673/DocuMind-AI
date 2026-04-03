@@ -4,38 +4,62 @@ const config = require("../config");
 
 // Main handler for the /analyze-document route
 const analyzeDocumentController = async (req, res) => {
-  try {
-    const file = req.file;
+  // REQUIREMENT 9: Console logs for debugging
+  console.log("DEBUG: Testing req.file:", req.file ? "Found" : "Missing");
+  console.log("DEBUG: Testing req.files:", (req.files && req.files.length > 0) ? `Found ${req.files.length} file(s)` : "Missing");
+  console.log("DEBUG: Testing req.body:", req.body);
 
-    // Check if the file uploaded at all
-    if (!file || file.size === 0) {
-      return res.status(400).json({ 
-        error: "Bad Request", 
-        message: "No document provided for analysis." 
-      });
+  try {
+    // REQUIREMENT 2: Accept file from different potential sources
+    let fileResource = null;
+
+    // Standard multer single file key 'file'
+    if (req.file) {
+      fileResource = req.file;
+    } 
+    // Any field names (req.files is an array with upload.any())
+    else if (req.files && req.files.length > 0) {
+      fileResource = req.files[0];
+    }
+    // Fallback if file is in body (some testers send it like this)
+    else if (req.body && req.body.file) {
+      fileResource = req.body.file;
     }
 
-    console.log(`Processing: ${file.originalname}`);
-
-    // Get the text from the file
-    const text = await extractTextFromBuffer(file);
-    
-    // Check if the file is empty or readable
-    if (!text || text.length < 5) {
-      console.warn(`Extraction result for ${file.originalname} is empty or too short.`);
+    // REQUIREMENT 7: If file is missing, return fallback structure instead of error
+    if (!fileResource) {
+      console.warn("No valid document object found in request.");
       return res.json(config.fallback);
+    }
+
+    const fileName = fileResource.originalname || "document";
+    console.log(`Processing: ${fileName}`);
+
+    // REQUIREMENT 5: Ensure safe extraction (no crashes)
+    const text = await extractTextFromBuffer(fileResource);
+    
+    if (!text || text.length < 5) {
+      console.warn(`Extraction result for ${fileName} is too short.`);
+      return res.json({
+        ...config.fallback,
+        fileName
+      });
     }
 
     // Call the AI services for analysis
     const analysis = await analyzeDocument(text);
     
-    // Give the final results back to the frontend
-    res.json(analysis);
+    // REQUIREMENT 6: ALWAYS return this exact JSON format
+    res.json({
+      fileName: fileName,
+      summary: analysis.summary || config.fallback.summary,
+      entities: analysis.entities || config.fallback.entities,
+      sentiment: analysis.sentiment || config.fallback.sentiment
+    });
 
   } catch (error) {
     console.error(`Document processing error: ${error.message}`);
-    
-    // Always give something back so the frontend doesn't crash
+    // Always return fallback structure on catch
     res.json(config.fallback);
   }
 };

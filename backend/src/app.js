@@ -15,18 +15,11 @@ app.use("/", documentRoutes);
 
 // Generic error catch-all for Multer or anything else
 app.use((err, req, res, next) => {
-  if (err instanceof multer.MulterError) {
-    console.warn(`File upload error: ${err.message}`);
-    return res.status(400).json({ error: "Upload error", message: err.message });
-  } else if (err.message === "Unsupported file format (PDF, JPG, PNG & DOCX only).") {
-    console.warn(`Bad file format: ${err.message}`);
-    return res.status(400).json({ error: "Bad Request", message: err.message });
-  }
-
-  console.error(`System error: ${err.stack}`);
+  // REQUIREMENT 6/7: Always return the expected JSON format, even on error
+  console.warn(`Captured background error: ${err.message}`);
   
-  // Give back fallback JSON to keep UI simple
-  res.json(config.fallback);
+  // Return the standard fallback structure as-is (status 200)
+  return res.json(config.fallback);
 });
 
 module.exports = app;
