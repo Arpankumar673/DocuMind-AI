@@ -49,8 +49,9 @@ const analyzeDocumentController = async (req, res) => {
     // Call the AI services for analysis
     const analysis = await analyzeDocument(text);
     
-    // REQUIREMENT 6: ALWAYS return this exact JSON format
+    // REQUIREMENT 6: ALWAYS return all fields (Document and Call Compliance)
     res.json({
+      ...config.fallback,
       fileName: fileName,
       summary: analysis.summary || config.fallback.summary,
       entities: analysis.entities || config.fallback.entities,

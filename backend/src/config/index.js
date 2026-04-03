@@ -19,7 +19,11 @@ const config = {
     fileName: "sample.pdf",
     summary: "Processed successfully",
     entities: {},
-    sentiment: "neutral"
+    sentiment: "neutral",
+    transcript: "No transcript available",
+    sop_validation: { status: "passed", score: 100 },
+    analytics: { duration: 0, speaker_count: 0 },
+    keywords: []
   },
   models: [
     process.env.AI_MODEL || "openai/gpt-3.5-turbo",
