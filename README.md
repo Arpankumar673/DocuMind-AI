@@ -1,78 +1,83 @@
-# 🧠 DocuMind AI – Intelligent Document Analysis System
+## 🧠 DocuMind AI – Document Analysis System
 
-DocuMind AI is a full-stack document intelligence platform that extracts text from PDFs and images, analyzes content using AI, and returns structured insights including summaries, key entities, and sentiment.
+DocuMind AI is a full-stack application that allows users to upload documents like PDFs or images and get useful insights from them.
+
+It extracts text from the file, processes it, and returns:
+
+* A short summary
+* Important details like names, dates, and amounts
+* Overall sentiment of the document
 
 ---
 
 ## 🚀 Features
-- **File Support**: PDF, JPG, PNG (Max 5MB).
-- **OCR Extraction**: Powered by Tesseract.js for high-accuracy image text extraction.
-- **PDF Parsing**: Direct text extraction from PDF layers.
-- **AI Analysis**: Deep integration with **OpenRouter API** (GPT-3.5) for structured JSON output.
-- **Premium UI**: Modern React interface with Framer Motion animations and glassmorphism.
+
+* Supports PDF, JPG, PNG (up to 50MB)
+* Extracts text from PDFs and images
+* Uses OCR for scanned documents
+* Returns structured JSON output
+* Simple and clean user interface
 
 ---
 
 ## 🛠️ Tech Stack
-- **Frontend**: React.js, Tailwind CSS, Lucide Icons, Framer Motion.
-- **Backend**: Node.js, Express.js.
-- **Deployment**: Vercel (Frontend) + Render (Backend).
+
+* Frontend: React, Tailwind CSS
+* Backend: Node.js, Express
+* OCR: Tesseract.js
+* AI Processing: OpenRouter API
+* Deployment: Vercel (frontend), Render (backend)
 
 ---
 
-## 🛠️ Local Development Setup
+## 🛠️ Local Setup
 
-### 1. Prerequisites
-- **Node.js** (v18+)
-- **NPM**
-- **OpenRouter API Key** ([Get it here](https://openrouter.ai/))
+### Backend
 
-### 2. Backend Setup
 ```bash
 cd backend
 npm install
-# Create .env from .env.example and add your keys
 cp .env.example .env
 npm start
 ```
 
-### 3. Frontend Setup
+### Frontend
+
 ```bash
 cd frontend
 npm install
-# Create .env from .env.example and configure VITE_AUTH_SECRET
 cp .env.example .env
 npm run dev
 ```
 
 ---
 
-## 🌐 Deployment Instructions
+## 🌐 Deployment
 
 ### Backend (Render)
-1. Build Command: `cd backend && npm install`
-2. Start Command: `cd backend && node server.js`
-3. Env Vars: `OPENROUTER_API_KEY`, `AUTH_SECRET`, `PORT=5000`
+
+* Build: `cd backend && npm install`
+* Start: `cd backend && node server.js`
 
 ### Frontend (Vercel)
-1. Root Directory: `frontend`
-2. Build Command: `npm run build`
-3. Output Directory: `dist`
-4. Env Vars: `VITE_BACKEND_URL`, `VITE_AUTH_SECRET`
+
+* Root: `frontend`
+* Build: `npm run build`
+* Output: `dist`
 
 ---
 
-## 📂 Project Structure
-- `backend/`: Express server and AI utility.
-- `frontend/`: React components and styles.
-- `.env.example`: Template for environment variables.
-- `README.md`: Project guide.
+## 📂 Structure
+
+* backend/ → API and processing
+* frontend/ → UI
+* .env.example → environment variables
 
 ---
 
-## ✅ Deliverables
-- [x] Full-stack source code (Clean & Secure).
-- [x] Document extraction pipeline (PDF/OCR).
-- [x] OpenRouter AI integration with Environment variables.
-- [x] Premium mobile-responsive UI.
-- [x] Detailed setup guide.
+## ✅ What this project does
+
+* Upload a document
+* Extract text
+* Analyze content
+* Return structured insights
