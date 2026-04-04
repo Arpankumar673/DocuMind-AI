@@ -13,7 +13,10 @@ const config = {
     "image/jpeg",
     "image/jpg",
     "image/png",
-    "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+    "audio/mpeg",
+    "audio/wav",
+    "audio/x-wav"
   ],
   fallback: {
     fileName: "sample.pdf",
